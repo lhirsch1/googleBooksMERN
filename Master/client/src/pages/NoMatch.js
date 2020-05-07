@@ -1,8 +1,12 @@
+//require depenedcies and components
 import React from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 
+//creating functional component NoMatch
+
 function NoMatch() {
+  // rendering DOM
   return (
     <Container fluid>
       <Row>
@@ -20,5 +24,5 @@ function NoMatch() {
     </Container>
   );
 }
-
+//export NoMatch
 export default NoMatch;
