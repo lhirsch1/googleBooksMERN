@@ -1,5 +1,7 @@
+//require dependency
 import React from "react";
 
+//creating footer component
 function Footer() {
   return (
     <footer>
@@ -10,5 +12,5 @@ function Footer() {
     </footer>
   );
 }
-
+//export footer component
 export default Footer;
