@@ -1,3 +1,4 @@
+//requiring dependencies/components
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import Card from "../components/Card";
@@ -7,18 +8,23 @@ import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { List } from "../components/List";
 
+//creating class component Saved
 class Saved extends Component {
+  //setting initial state
   state = {
     books: []
   };
 
+  //runs getSavedBooks on mount
   componentDidMount() {
     this.getSavedBooks();
   }
 
+  //hits API to get list of saved books
   getSavedBooks = () => {
     API.getSavedBooks()
       .then(res =>
+        //sets state to include results of API call
         this.setState({
           books: res.data
         })
@@ -26,11 +32,14 @@ class Saved extends Component {
       .catch(err => console.log(err));
   };
 
+  //delete call on API 
   handleBookDelete = id => {
+    //deletes selected book and then rerenders list of saved books
     API.deleteBook(id).then(res => this.getSavedBooks());
   };
 
   render() {
+    //rendering DOM
     return (
       <Container>
         <Row>
@@ -48,6 +57,7 @@ class Saved extends Component {
             <Card title="Saved Books" icon="download">
               {this.state.books.length ? (
                 <List>
+                  {/* creating book component for each item in state.books array */}
                   {this.state.books.map(book => (
                     <Book
                       key={book._id}
@@ -58,6 +68,7 @@ class Saved extends Component {
                       description={book.description}
                       image={book.image}
                       Button={() => (
+                        //creating delete button for each book 
                         <button
                           onClick={() => this.handleBookDelete(book._id)}
                           className="btn btn-danger ml-2"
@@ -79,5 +90,5 @@ class Saved extends Component {
     );
   }
 }
-
+//export Saved component
 export default Saved;
